@@ -123,7 +123,7 @@
 // Grabbed user input values from text boxes
       var newTrainName = $("#trainName-input").val().trim();
       var newDestination = $("#destination-input").val().trim();
-      var newFirstTrain = ($("#start-input").val().trim(), "HH:mm");
+      var newFirstTrain = moment($("#start-input").val().trim(), "hh:mm").format("X");
       var newFrequency = $("#frequency-input").val().trim();
      
 
@@ -138,13 +138,7 @@
 // Upload data to database
       database.ref().push(newTrain);
 
-      //console log
-      console.log(newTrain.name);
-      console.log(newTrain.destination);
-      console.log(newTrain.start);
-      console.log(newTrain.frequency);
-
-      // clear fields
+            // clear fields
       $("#trainName-input").val("");
       $("#destination-input").val("");
       $("#start-input").val("");
