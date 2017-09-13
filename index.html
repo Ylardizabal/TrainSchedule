@@ -123,11 +123,10 @@
 // Grabbed user input values from text boxes
       var newTrainName = $("#trainName-input").val().trim();
       var newDestination = $("#destination-input").val().trim();
-      var newFirstTrain = moment($("#start-input").val().trim(), "hh:mm").format("X");
+      var newFirstTrain = moment($("#start-input").val().trim()).format("hh:mm");
       var newFrequency = $("#frequency-input").val().trim();
      
-
- // New Values -->
+   // New Values -->
     var newTrain = {
 	    name: newTrainName,
 	    destination: newDestination,
@@ -166,7 +165,7 @@
 
     // Calculate the next arrival and minutes away
 	  // To calculate the next train
-	  var trainNextArrival = (moment.unix(newFirstTrain + newFrequency, "X").format("hh:mm"));
+	  var trainNextArrival = (moment.unix(newFirstTrain + newFrequency, "X").format("LT"));
 	  console.log(trainNextArrival);
 
 	  // Calculate the minutes away
