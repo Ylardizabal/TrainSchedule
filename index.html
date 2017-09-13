@@ -165,7 +165,7 @@
 
     // Calculate the next arrival and minutes away
 	  // To calculate the next train
-	  var trainNextArrival = (moment.unix(newFirstTrain + newFrequency, "X").format("LT"));
+	  var trainNextArrival = (moment.diff(moment.unix ((newFirstTrain, "X") + (newFrequency, "X")).format("LT"));
 	  console.log(trainNextArrival);
 
 	  // Calculate the minutes away
