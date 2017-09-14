@@ -134,9 +134,10 @@
 // Grabbed user input values from text boxes
       var newTrainName = $("#trainName-input").val().trim();
       var newDestination = $("#destination-input").val().trim();
-      var newFirstTrain = moment($("#start-input").val().trim(), "hh:mm").format("LT");
+      var newFirstTrain = moment($("#start-input").val().trim()).format("LT");
       var newFrequency = $("#frequency-input").val().trim();
      
+        console.log("FIRST TRAIN: " + newFirstTrain);
    // New Values -->
     var newTrain = {
 	    name: newTrainName,
@@ -180,28 +181,28 @@
 	  		// time of next train of now is the time of each train after the first train in relation to the time it is now
 	         //converting first rain (pushed back 1 year to make sure comes before current time) 
             var convertedFirstTrain = moment(newFirstTrain, "hh:mm").subtract(1, "years");
-            console.log(convertedFirstTrain);
+            console.log("FIRST TRAIN TIME: " + convertedFirstTrain);
 
             // current time
-            var currentTime = new moment().format("LT");
+            var currentTime = moment();
             console.log("CURRENT TIME: " + moment(currentTime).format("LT"));
 
             //difference between the times of now and the first train
-            var timeDifference = moment().diff(moment(convertedFirstTrain));
+            var timeDifference = moment().diff(moment(convertedFirstTrain), "minutes");
             console.log("DIFFERENCE IN TIME: " + timeDifference);
 
             //time apart (remainder)
             var timeRemainder = timeDifference % newFrequency;
-            console.log(timeRemainder)
+            console.log("TIME APART: " + timeRemainder)
 
             //minutes until train
-            var trainMinAway = timeDifference - timeRemainder;
+            var trainMinAway = newFrequency - timeRemainder;
             //var trainMinAway = moment(trainMinAway).format("hh:mm");
-            console.log("MINUTES TILL TRAIN: " + trainMinAway)
+            console.log("MINUTES AWAY: " + trainMinAway)
 
-	         //Next Train
+            //Next Train
            var nextTrain = moment().add(trainMinAway).format("LT");
-           console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"))
+           console.log("NEXT TRAIN: " + moment(nextTrain).format("hh:mm"));
 
       // Change the HTML to reflect
         $("#train-table > tbody").append("<tr><td>" + newTrainName + "</td><td>" + newDestination + "</td><td>" +
