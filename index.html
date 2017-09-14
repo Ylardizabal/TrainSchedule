@@ -201,7 +201,7 @@
             console.log("MINUTES AWAY: " + trainMinAway)
 
             //Next Train
-           var nextTrain = moment().add(trainMinAway).format("LT");
+           var nextTrain = moment().add(trainMinAway, "minutes").format("LT");
            console.log("NEXT TRAIN: " + moment(nextTrain).format("hh:mm"));
 
       // Change the HTML to reflect
