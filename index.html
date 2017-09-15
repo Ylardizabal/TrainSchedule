@@ -134,7 +134,7 @@
 // Grabbed user input values from text boxes
       var newTrainName = $("#trainName-input").val().trim();
       var newDestination = $("#destination-input").val().trim();
-      var newFirstTrain = moment($("#start-input").val().trim(), "hh:mm").format("X");
+      var newFirstTrain = moment($("#start-input").val().trim(), "hh:mm").format("LT");
       var newFrequency = $("#frequency-input").val().trim();
      
 
@@ -142,7 +142,7 @@
     var newTrain = {
 	    name: newTrainName,
 	    destination: newDestination,
-	    start: newFirstTrain,
+	    trainStart: newFirstTrain,
 	    frequency: newFrequency
 	    }; 
 
@@ -166,13 +166,13 @@
       // storing the snapshot.val() in a variable 
       var newTrainName = childSnapshot.val().name;
       var newDestination = childSnapshot.val().destination;
-      var newFirstTrain = childSnapshot.val().start;
+      var newFirstTrain = childSnapshot.val().trainStart;
       var newFrequency = childSnapshot.val().frequency;
 
       // Console.loging the last user's data
       console.log("TRAIN NAME: " + newTrainName);
       console.log("DESTINATION: " + newDestination);
-      console.log("FIRST TRAIN TIME: " + moment(newFirstTrain).format("hh:mm"));
+      console.log("FIRST TRAIN TIME: " + moment(newFirstTrain).format("LT"));
       console.log("FREQUENCY: " + newFrequency);
 
     // Calculate the next arrival and minutes away
