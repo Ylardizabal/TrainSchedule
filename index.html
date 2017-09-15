@@ -84,7 +84,7 @@
                   <input class="form-control" id="destination-input" type="text">
                 </div>
                 <div class="form-group">
-                  <label for="start-input">First Train Time (HH:mm- military time)</label>
+                  <label for="start-input">First Train Time (hh:mm- military time)</label>
                   <input class="form-control" id="start-input" type="text">
                 </div>
                 <div class="form-group">
@@ -134,10 +134,10 @@
 // Grabbed user input values from text boxes
       var newTrainName = $("#trainName-input").val().trim();
       var newDestination = $("#destination-input").val().trim();
-      var newFirstTrain = moment($("#start-input").val().trim()).format("LT");
+      var newFirstTrain = moment($("#start-input").val().trim(), "hh:mm").format("X");
       var newFrequency = $("#frequency-input").val().trim();
      
-        console.log("FIRST TRAIN: " + newFirstTrain);
+
    // New Values -->
     var newTrain = {
 	    name: newTrainName,
@@ -170,10 +170,10 @@
       var newFrequency = childSnapshot.val().frequency;
 
       // Console.loging the last user's data
-      console.log(newTrainName);
-      console.log(newDestination);
-      console.log(newFirstTrain);
-      console.log(newFrequency);
+      console.log("TRAIN NAME: " + newTrainName);
+      console.log("DESTINATION: " + newDestination);
+      console.log("FIRST TRAIN TIME: " + moment(newFirstTrain).format("hh:mm"));
+      console.log("FREQUENCY: " + newFrequency);
 
     // Calculate the next arrival and minutes away
 	  // To calculate the next train
@@ -181,7 +181,7 @@
 	  		// time of next train of now is the time of each train after the first train in relation to the time it is now
 	         //converting first rain (pushed back 1 year to make sure comes before current time) 
             var convertedFirstTrain = moment(newFirstTrain, "hh:mm").subtract(1, "years");
-            console.log("FIRST TRAIN TIME: " + convertedFirstTrain);
+            console.log("FIRST TRAIN TIME: " + moment(convertedFirstTrain).format("hh:mm"));
 
             // current time
             var currentTime = moment();
@@ -189,7 +189,7 @@
 
             //difference between the times of now and the first train
             var timeDifference = moment().diff(moment(convertedFirstTrain), "minutes");
-            console.log("DIFFERENCE IN TIME: " + timeDifference);
+            console.log("DIFFERENCE IN TIME: " + moment(timeDifference).format("hh:mm"));
 
             //time apart (remainder)
             var timeRemainder = timeDifference % newFrequency;
@@ -201,7 +201,7 @@
             console.log("MINUTES AWAY: " + trainMinAway)
 
             //Next Train
-           var nextTrain = moment().add(trainMinAway, "minutes").format("LT");
+           var nextTrain = moment().add(trainMinAway);
            console.log("NEXT TRAIN: " + moment(nextTrain).format("hh:mm"));
 
       // Change the HTML to reflect
